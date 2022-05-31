@@ -1,0 +1,4 @@
+---
+title: Infinix Luncurkan Inbook X2 di Indonesia, Harga Mulai Rp 6 Juta
+deskripsi:  Infinix baru saja meluncurkan laptop terbarunya untuk pasar Indonesia. Setelah memperkenalkan Inbook X1 beberapa bulan lalu, kali ini perusahaan tersebut menghadirkan Inbook X2.Menurut Infinix, Inbook X2 merupakan laptop pertama yang memiliki pencahayaan ganda di kamera depan, sehingga memungkinkan pengguna melakukan panggilan video di berbagai kondisi. Inbook X2 hadir dalam tiga varian Intel Core, mulai dari i3, i5, dan i7. Adapun untuk kapasitas penyimpanan yang tersedia, ada RAM 3GB+ROM 256GB dan RAM 8GB+ROM 512GB. Memiliki baterai berkapasitas 50Wh, Inbook X2 diklaim mampu bertahan hingga 11 jam. Untuk pengisian daya, laptop ini mendukung 45W PD 3.0 fast charging dan menjanjikan pengisian daya 60 persen dalam satu jam.
+---
