@@ -16,7 +16,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
-    'gatsby-remark-reading-time',
     {
       resolve: 'gatsby-plugin-next-seo',
       options: {
