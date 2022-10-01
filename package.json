@@ -35,11 +35,11 @@
     "gatsby-remark-twitter-cards": "^0.6.1",
     "gatsby-source-contentful": "^7.8.2",
     "gatsby-source-filesystem": "^4.11.1",
-    
+
     "gatsby-source-shopify": "^6.10.2",
     "gatsby-source-shopify-storefront": "^1.0.0",
     "gatsby-source-stripe": "^4.0.0",
-    "gatsby-source-vimeo": "^1.1.8",
+    
     "gatsby-source-vimeo-all": "^0.0.18",
     "gatsby-source-youtube-v2": "^1.0.1",
     "gatsby-source-youtube-v3": "^3.0.2",
