@@ -35,7 +35,7 @@
     "gatsby-remark-twitter-cards": "^0.6.1",
     "gatsby-source-contentful": "^7.8.2",
     "gatsby-source-filesystem": "^4.11.1",
-    "gatsby-source-instagram": "^0.9.0",
+    
     "gatsby-source-shopify": "^6.10.2",
     "gatsby-source-shopify-storefront": "^1.0.0",
     "gatsby-source-stripe": "^4.0.0",
