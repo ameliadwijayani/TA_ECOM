@@ -15,6 +15,9 @@ export default function Layout({
   
   children
 }) {
+  if (typeof window !== 'undefined') {
+    /* place entire p5 here */
+  }
   const [searchQuery, setSearchQuery] = React.useState( '');
   function searchData(){
 

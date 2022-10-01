@@ -75,20 +75,20 @@ export const getProfile = () => {
 }
 export const setItem = (item,qty) => {
   let test=0;
+  console.log(user["cart"])
   user["cart"].map((e,index)=>{
-    if(e.nama==item.title){
+    if(e.nama==item.product.name){
       user["cart"][index].qty=qty;
       test=1;
     }
   })
   if(test==1)return;
   user["cart"].push({
-    nama:item.title,
-    harga:item.priceRangeV2.maxVariantPrice.amount,
+    nama:item.product.name,
+    harga:item.unit_amount/100,
     qty:qty,
-    image:item.images
+    image:item.product.images[0]
   }) 
-  console.log(user["cart"])
 }
 
 export const logout = () => {

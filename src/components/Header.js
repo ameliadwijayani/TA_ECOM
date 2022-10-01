@@ -22,9 +22,7 @@ export default function  Header({ searchQuery, setSearchQuery,searchData }) {
         }
     `)
     const [kategori,setKategori]=React.useState(data.allMarkdownRemark.nodes)
-    React.useEffect(()=>{
-       
-    },[])
+    
     const user = getProfile()
     // if(Object.keys(user).length === 0){logout()}
     
@@ -32,26 +30,10 @@ export default function  Header({ searchQuery, setSearchQuery,searchData }) {
     
     <div>
         <GatsbySeo
-            openGraph={{
-                type: 'website',
-                url: 'http://localhost:8000/',
-                title: 'E-com',
-                description: 'Coba Ecom TA',
-                images: [
-                    {
-                        url: 'https://www.example.ie/og-image.jpg',
-                        width: 800,
-                        height: 600,
-                        alt: 'Og Image Alt',
-                    },
-                    {
-                        url: 'https://www.example.ie/og-image-2.jpg',
-                        width: 800,
-                        height: 600,
-                        alt: 'Og Image Alt 2',
-                    },
-                ],
-            }}
+            type='website'
+            url='http://localhost:8000/'
+            title='E-com'
+            description='Coba Ecom TA'
         />
         {/* TOP HEADER */}
         <div id="top-header">
@@ -88,7 +70,7 @@ export default function  Header({ searchQuery, setSearchQuery,searchData }) {
                 <div className="col-md-3">
                 <div className="header-logo">
                     <a href="#" className="logo">
-                    <StaticImage src="./img/logo.png" alt />
+                    <StaticImage src="./img/logo.png" alt ="Img"/>
                     </a>
                 </div>
                 </div>
@@ -134,7 +116,7 @@ export default function  Header({ searchQuery, setSearchQuery,searchData }) {
                         <div className="cart-list">
                         <div className="product-widget">
                             <div className="product-img">
-                            <StaticImage src="./img/product01.png" alt />
+                            <StaticImage src="./img/product01.png" alt ="Img" />
                             </div>
                             <div className="product-body">
                             <h3 className="product-name"><a href="#">product name goes here</a></h3>
@@ -144,7 +126,7 @@ export default function  Header({ searchQuery, setSearchQuery,searchData }) {
                         </div>
                         <div className="product-widget">
                             <div className="product-img">
-                            <StaticImage src="./img/product02.png" alt />
+                            <StaticImage src="./img/product02.png" alt ="Img" />
                             </div>
                             <div className="product-body">
                             <h3 className="product-name"><a href="#">product name goes here</a></h3>

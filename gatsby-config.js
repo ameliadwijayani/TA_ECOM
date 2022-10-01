@@ -10,6 +10,9 @@ module.exports = {
     author: `@gatsbyjs`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
+  flags: {
+    DEV_SSR: true
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
@@ -97,12 +100,14 @@ module.exports = {
     //     }
     //   },
     // },
-    {
-      resolve: `gatsby-source-instagram`,
-      options: {
-        username: `8556131572`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-youtube-v2`,
+    //   options: {
+    //     channelId: [ 'UCK8sQmJBp8GCxrOtXWBpyEA', 'UCK8sQmJBp8GCxrOtXWBpyXY'],
+    //     apiKey:'AIzaSyCChNB-Kt_TJy3OL5kpxIytrmvDICDhkvk' ,
+    //     maxVideos: 50 // Defaults to 50
+    //   },
+    // },
     
     // {
     //   resolve: 'gatsby-source-shopify-storefront',
@@ -151,13 +156,6 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-shopify",
-      options: {
-        password: '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',
-        storeUrl: 'ameliaplazaaa.myshopify.com',
-      },
-    },
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `gatsby-starter-default`,
@@ -172,11 +170,12 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-s3`,
-      options: {
-          bucketName: 'my-website-bucket',
-      },
-  },
+        resolve: `gatsby-plugin-s3`,
+        options: {
+            bucketName: 'studikasusstripe',
+            acl: null
+        },
+    },
     // {
     //   resolve: `gatsby-plugin-chatwoot`,
     //   options: {
@@ -194,26 +193,39 @@ module.exports = {
         engineOptions: 'speed',
         query: `
           {
-            allShopifyProduct {
+            allStripePrice {
               nodes {
-                id
-                title
-                description
+                product {
+                  images
+                  name
+                  id
+                  description
+                  default_price
+                }
+                currency
+                unit_amount
+                unit_amount_decimal
               }
             }
           }
         `,
 
         ref: 'id',
-        index: ['index'],
+        index: ['name'],
 
-        store: ['id','title','description'],
+        store: ['id','name','description','images','default_price','currency','unit_amount','unit_amount_decimal'],
 
         normalizer: ({ data }) =>
-          data.allShopifyProduct.nodes.map((node) => ({
-            id: node.id,
-            deskripsi: node.description,
-            title: node.title,
+          data.allStripePrice.nodes.map((node) => ({
+            id: node.product.id,
+            description: node.product.description,
+            name: node.product.name,
+            images: node.product.images,
+            default_price: node.product.default_price,
+            currency: node.currency,
+            unit_amount: node.unit_amount,
+            unit_amount_decimal: node.unit_amount_decimal,
+
           })),
       },
     },
@@ -226,9 +238,9 @@ module.exports = {
       },
     }, 
     "gatsby-remark-embed-video",
-  "gatsby-remark-responsive-iframe",
-  "gatsby-remark-prismjs",
-  "gatsby-remark-images"
-   
+    "gatsby-remark-responsive-iframe",
+    "gatsby-remark-prismjs",
+    "gatsby-remark-images",
+    'gatsby-plugin-next-seo'
   ],
 }

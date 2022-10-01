@@ -1,90 +1,61 @@
-import React from 'react'
-import styled from '@emotion/styled'
-
-import Layout from "../components/Layout"
-import { getProfile,Logout } from "../utils/auth"
-import Img from "gatsby-image"
+import React, { useState } from "react"
 import { loadStripe } from "@stripe/stripe-js"
-import { CartProvider } from "use-shopping-cart"
-import { useShoppingCart } from "use-shopping-cart"
-const stripePromise = loadStripe("pk_test_51L0Zk4A7C8rU4XCnfZEY5yGnJDujOdY2CxQkSHUbAE22YPCcpmYLc3HOQHpkriiba6USkmNHyLrivD57tzFG3Aay00f3s7NEgp")
-export default function Checkout() {
-
-    const user = getProfile()
-    let totHarga=0;
-    const [loading, setLoading] = React.useState(false)
-    /* Gets the totalPrice and a method for redirecting to stripe */
-    const { formattedTotalPrice, redirectToCheckout, cartCount, clearCart } =
-      useShoppingCart()
-
-    function address(){
-        return(
-            <div className="section">
-            {/* container */}
-            <div className="container">
-                
-                {/* Order Details */}
-                <div className="col-md-5 order-details">
-                    <div className="section-title text-center">
-                    <h3 className="title">Your Order</h3>
-                    </div>
-                    <div className="order-summary">
-                    <div className="order-col">
-                        <div><strong>PRODUCT</strong></div>
-                        <div><strong>TOTAL</strong></div>
-                    </div>
-                    <div className="order-products">
-                    {user["cart"].map((e,index)=>{
-                        totHarga+=(e.harga*e.qty)
-                        return(
-                            <div>
-                                <div className="order-col">
-                                    <div>{e.qty+"x "+e.nama}</div>
-                                    <div>{"Rp. "+e.harga.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</div>
-                                </div>
-                            </div>
-                        )
-                    })}
-                        
-                    </div>
-                    <div className="order-col">
-                        <div>Shiping</div>
-                        <div><strong>FREE</strong></div>
-                    </div>
-                    <div className="order-col">
-                        <div><strong>TOTAL</strong></div>
-                        <div><span className="order-total" style={{ fontSize:"14pt" }}>{"Rp. "+totHarga.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</span></div>
-                    </div>
-                    </div>
-                    <div className="input-checkbox">
-                    <input type="checkbox" id="terms" />
-                    <label htmlFor="terms">
-                        <span />
-                        I've read and accept the <a href="#">terms &amp; conditions</a>
-                    </label>
-                    </div>
-                    {/* <a href="#" className="primary-btn order-submit">Place order</a> */}
-                    <button
-                        // style={buttonStyles}
-                        disabled={loading}
-                        onClick={() => {
-                        setLoading(true)
-                        redirectToCheckout()
-                        }}
-                    >
-                        {loading ? "Loading..." : "Checkout"}
-                    </button>
-                </div>
-                {/* /Order Details */}
-                </div>
-            {/* /container */}
-            </div>
-
-        )
-    }
-  return (
-    <Layout>
-        {address()}
-    </Layout>
-  )
+const buttonStyles = {
+  fontSize: "13px",
+  textAlign: "center",
+  color: "#000",
+  padding: "12px 60px",
+  boxShadow: "2px 5px 10px rgba(0,0,0,.1)",
+  backgroundColor: "rgb(255, 178, 56)",
+  borderRadius: "6px",
+  letterSpacing: "1.5px",
 }
+const buttonDisabledStyles = {
+  opacity: "0.5",
+  cursor: "not-allowed",
+}
+let stripePromise
+const getStripe = () => {
+  if (!stripePromise) {
+    stripePromise = loadStripe("pk_test_51L0Zk4A7C8rU4XCnfZEY5yGnJDujOdY2CxQkSHUbAE22YPCcpmYLc3HOQHpkriiba6USkmNHyLrivD57tzFG3Aay00f3s7NEgp")
+  }
+  return stripePromise
+}
+const Checkout = () => {
+  const [loading, setLoading] = useState(false)
+  const { search } = window.location;
+  const query = new URLSearchParams(search).get('p')
+  const [price, setprice] = React.useState(price || '');
+  if (typeof window !== 'undefined') {
+    
+  
+    const redirectToCheckout = async event => {
+      event.preventDefault()
+      setLoading(true)
+      const stripe = await getStripe()
+      const { error } = await stripe.redirectToCheckout({
+        mode: "payment",
+        lineItems: [{ price: price, quantity: 1 }],
+        successUrl: `http://localhost:8000/`,
+        cancelUrl: `http://localhost:8000/Checkout`,
+      })
+      if (error) {
+        console.warn("Error:", error)
+        setLoading(false)
+      }
+    }
+    return (
+      <button
+        disabled={loading}
+        style={
+          loading ? { ...buttonStyles, ...buttonDisabledStyles } : buttonStyles
+        }
+        onClick={redirectToCheckout}
+      >
+        BUY MY PRODUCT
+      </button>
+    )
+  }
+  return null;
+}
+export default Checkout
