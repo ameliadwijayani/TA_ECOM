@@ -191,7 +191,6 @@ export default function ({data}) {
 
     )
   }
-  if(!Loading) return <div>loading</div>
   return (
     <Layout>
       

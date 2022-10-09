@@ -99,8 +99,8 @@ export default function Store({ path,data: {
                                 <div className="col-md-4 col-xs-6" key={index}>
                                     <div className="product">
                                         <div className="product-img">
-                                            <img src={e.images} alt ="Img"  />
-                                            {/* <GatsbyImage alt="produk img" image= {(e.images)}/> */}
+                                            {/* <img src={e.images} alt ="Img"  /> */}
+                                            <GatsbyImage alt="produk img" image= {(e.images)}/>
                                             <div className="product-label">
                                             
                                             </div>
