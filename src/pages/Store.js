@@ -23,7 +23,6 @@ export default function Store({ path,data: {
     const unFlattenResults = results =>{
         results!=[]&&results.map(post => {
             const {id,name,description,images,default_price,currency,unit_amount,unit_amount_decimal} = post;
-            
             return { edges: { id,name,description,images,default_price,currency,unit_amount,unit_amount_decimal } };
         });
         return results;
@@ -46,16 +45,14 @@ export default function Store({ path,data: {
         
     }
     let s = "";
-    const query = new URLSearchParams(s).get('s')
-    const [searchQuery, setSearchQuery] = useState(query || '');
-    const results = useFlexSearch(searchQuery, index, store);
-    const posts = searchQuery ? unFlattenResults(results) : edges;
-    if (typeof window !== 'undefined') {
-        s=typeof window !== 'undefined'?window.location:"";
+    // const query = new URLSearchParams(s).get('s')
+    // const [searchQuery, setSearchQuery] = useState(query || '');
+    // const results = useFlexSearch(searchQuery, index, store);
+    // const posts = searchQuery ? unFlattenResults(results) : edges;
+    const posts = edges;
+    // if (typeof window !== 'undefined') {
+    //     s=typeof window !== 'undefined'?window.location:"";
         
-        
-      
-
         function header_store(){
             return(
                 <div id="breadcrumb" className="section">
@@ -166,10 +163,10 @@ export default function Store({ path,data: {
                 <Footer/>
             </div>
         )
-    }
+//     }
     
-    // const posts = edges;
-return null;
+//     // const posts = edges;
+// return null;
 
 }
 

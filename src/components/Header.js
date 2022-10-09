@@ -4,6 +4,7 @@ import { useStaticQuery, graphql,Link} from "gatsby"
 import { GatsbySeo } from 'gatsby-plugin-next-seo';
 import { login, logout, isAuthenticated, getProfile } from "../utils/auth"
 import { StaticImage } from "gatsby-plugin-image"
+import SEO from './Seo';
 export default function  Header({ searchQuery, setSearchQuery,searchData }) {
     // if (!isAuthenticated()) {
     //     login()
@@ -29,12 +30,7 @@ export default function  Header({ searchQuery, setSearchQuery,searchData }) {
   return (
     
     <div>
-        <GatsbySeo
-            type='website'
-            url='http://localhost:8000/'
-            title='E-com'
-            description='Coba Ecom TA'
-        />
+        <SEO/>
         {/* TOP HEADER */}
         <div id="top-header">
             <div className="container">

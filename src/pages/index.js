@@ -9,11 +9,11 @@ import { login, logout, isAuthenticated, getProfile,setItem } from "../utils/aut
 
 export default function ({data}) {
   
-  if (!isAuthenticated()) {
-    login()
-    return <p>Redirecting to login...</p>
-  }
-  const user = getProfile()
+  // if (!isAuthenticated()) {
+  //   login()
+  //   return <p>Redirecting to login...</p>
+  // }
+  // const user = getProfile()
 
   const [Loading,setLoading]=React.useState(false)
   React.useEffect(()=>{
@@ -26,9 +26,7 @@ export default function ({data}) {
     setLoading(true)
   },[])
   const [allMarkdownRemark, setallMarkdownRemark]  = React.useState(data.allStripePrice.edges); 
-        React.useEffect(()=>{
-          console.log(data.allStripePrice)
-        },[])
+  
 
       function A(){
         return(

@@ -23,39 +23,63 @@ const getStripe = () => {
 }
 const Checkout = () => {
   const [loading, setLoading] = useState(false)
-  const { search } = window.location;
-  const query = new URLSearchParams(search).get('p')
-  const [price, setprice] = React.useState(price || '');
-  if (typeof window !== 'undefined') {
+  // const { search } = window.location;
+  // const query = new URLSearchParams(search).get('p')
+  // const [price, setprice] = React.useState(price || '');
+  const redirectToCheckout = async event => {
+    event.preventDefault()
+    setLoading(true)
+    const stripe = await getStripe()
+    const { error } = await stripe.redirectToCheckout({
+      mode: "payment",
+      lineItems: [{ price: price, quantity: 1 }],
+      successUrl: `http://localhost:8000/`,
+      cancelUrl: `http://localhost:8000/Checkout`,
+    })
+    if (error) {
+      setLoading(false)
+    }
+  }
+  return (
+    <button
+      disabled={loading}
+      style={
+        loading ? { ...buttonStyles, ...buttonDisabledStyles } : buttonStyles
+      }
+      onClick={redirectToCheckout}
+    >
+      BUY MY PRODUCT
+    </button>
+  )
+  // if (typeof window !== 'undefined') {
     
   
-    const redirectToCheckout = async event => {
-      event.preventDefault()
-      setLoading(true)
-      const stripe = await getStripe()
-      const { error } = await stripe.redirectToCheckout({
-        mode: "payment",
-        lineItems: [{ price: price, quantity: 1 }],
-        successUrl: `http://localhost:8000/`,
-        cancelUrl: `http://localhost:8000/Checkout`,
-      })
-      if (error) {
-        console.warn("Error:", error)
-        setLoading(false)
-      }
-    }
-    return (
-      <button
-        disabled={loading}
-        style={
-          loading ? { ...buttonStyles, ...buttonDisabledStyles } : buttonStyles
-        }
-        onClick={redirectToCheckout}
-      >
-        BUY MY PRODUCT
-      </button>
-    )
-  }
-  return null;
+  //   const redirectToCheckout = async event => {
+  //     event.preventDefault()
+  //     setLoading(true)
+  //     const stripe = await getStripe()
+  //     const { error } = await stripe.redirectToCheckout({
+  //       mode: "payment",
+  //       lineItems: [{ price: price, quantity: 1 }],
+  //       successUrl: `http://localhost:8000/`,
+  //       cancelUrl: `http://localhost:8000/Checkout`,
+  //     })
+  //     if (error) {
+  //       setLoading(false)
+  //     }
+  //   }
+  //   return (
+  //     <button
+  //       disabled={loading}
+  //       style={
+  //         loading ? { ...buttonStyles, ...buttonDisabledStyles } : buttonStyles
+  //       }
+  //       onClick={redirectToCheckout}
+  //     >
+  //       BUY MY PRODUCT
+  //     </button>
+  //   )
+  // }
+  // return null;
 }
 export default Checkout
