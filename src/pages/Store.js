@@ -96,7 +96,7 @@ export default function Store({ path,data: {
                                 e.images=e.node?.product.images[0];
                             }
                             return(
-                                <div className="col-md-4 col-xs-6" key={index}>
+                                <div className="col-md-3 col-xs-4" key={index}>
                                     <div className="product">
                                         <div className="product-img">
                                             <img src={e.node?.product.images[0]} alt ="Img"  />
