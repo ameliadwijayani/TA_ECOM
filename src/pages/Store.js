@@ -154,9 +154,9 @@ export default function Store({ path,data: {
         return (
             <div>
                 <Header
-                    searchQuery={searchQuery}
-                    setSearchQuery={setSearchQuery}
-                    searchData={{  }}
+                    // searchQuery={searchQuery}
+                    // setSearchQuery={setSearchQuery}
+                    // searchData={{  }}
                 />
                     { header_store()}
                     { categories()}

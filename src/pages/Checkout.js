@@ -25,7 +25,7 @@ const Checkout = () => {
   const [loading, setLoading] = useState(false)
   // const { search } = window.location;
   // const query = new URLSearchParams(search).get('p')
-  // const [price, setprice] = React.useState(price || '');
+  const [price, setprice] = React.useState(price || '');
   const redirectToCheckout = async event => {
     event.preventDefault()
     setLoading(true)
