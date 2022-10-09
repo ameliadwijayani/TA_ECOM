@@ -23,9 +23,12 @@ const getStripe = () => {
 }
 const Checkout = () => {
   const [loading, setLoading] = useState(false)
-  // const { search } = window.location;
-  // const query = new URLSearchParams(search).get('p')
-  const [price, setprice] = React.useState(price || '');
+  const [price, setprice] = React.useState('');
+  React.useEffect(()=>{
+    const { search } = window.location;
+    const query = new URLSearchParams(search).get('p')
+    setprice(query);
+  },[])
   const redirectToCheckout = async event => {
     event.preventDefault()
     setLoading(true)
