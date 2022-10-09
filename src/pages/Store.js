@@ -100,10 +100,7 @@ export default function Store({ path,data: {
                                     <div className="product">
                                         <div className="product-img">
                                             {/* <img src={e.images} alt ="Img"  /> */}
-                                            <GatsbyImage alt="produk img" image= {(e.images)}/>
-                                            <div className="product-label">
-                                            
-                                            </div>
+                                            {/* <GatsbyImage alt="produk img" image= {(e.images)}/> */}
                                         </div>
                                         <div className="product-body">
                                             
